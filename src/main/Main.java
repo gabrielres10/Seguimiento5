@@ -1,6 +1,8 @@
 package main;
 
 import java.io.IOException;
+
+import control.WindowA;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,9 +17,17 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage){
-		try {
+		
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/WindowA.fxml"));
-			Parent parent = (Parent) loader.load();
+			loader.setController(new WindowA());
+			
+			Parent parent = null;
+			try {
+				parent = (Parent) loader.load();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			Stage stage = new Stage();
 			
@@ -27,10 +37,7 @@ public class Main extends Application {
 			
 			stage.show();
 			
-		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		
 		
 		
 	}
